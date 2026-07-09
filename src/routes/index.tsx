@@ -63,11 +63,12 @@ function LandingPage() {
             alt="Business professionals meeting in a modern conference room"
             className="h-full w-full object-cover"
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-background/75" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-background/45" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
         </div>
-        <div className="absolute inset-0 grid-bg opacity-25 pointer-events-none z-10" />
+        <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none z-10" />
         <div className="relative z-20 mx-auto max-w-7xl px-6">
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium text-muted-foreground">
