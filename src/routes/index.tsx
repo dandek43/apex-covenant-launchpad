@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, CheckCircle2, Mail, Phone, User, Briefcase } from "lucide-react";
 import logoAsset from "@/assets/apex-covenant-logo.png.asset.json";
+import heroBgAsset from "@/assets/hero-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -54,9 +55,20 @@ function LandingPage() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative bg-hero pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
-        <div className="relative mx-auto max-w-7xl px-6">
+      <section id="top" className="relative pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden">
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={heroBgAsset.url}
+            alt="Business professionals meeting in a modern conference room"
+            className="h-full w-full object-cover"
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-background/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        </div>
+        <div className="absolute inset-0 grid-bg opacity-25 pointer-events-none z-10" />
+        <div className="relative z-20 mx-auto max-w-7xl px-6">
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
