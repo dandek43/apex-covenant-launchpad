@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, CheckCircle2, Mail, Phone, User, Briefcase } from "lucide-react";
 import logoAsset from "@/assets/apex-covenant-logo.png.asset.json";
+import heroBgAsset from "@/assets/hero-bg.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
