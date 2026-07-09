@@ -55,7 +55,7 @@ function LandingPage() {
       </header>
 
       {/* HERO */}
-      <section id="top" className="relative pt-32 pb-24 md:pt-44 md:pb-32 overflow-hidden">
+      <section id="top" className="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
