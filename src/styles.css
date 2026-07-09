@@ -68,10 +68,10 @@
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.60 0.14 245);
 
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.4 0.15 230 / 0.55), transparent 60%),
+  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% -10%, oklch(0.42 0.12 245 / 0.55), transparent 60%),
                    linear-gradient(180deg, oklch(0.19 0.03 260) 0%, oklch(0.16 0.03 260) 100%);
-  --gradient-brand: linear-gradient(135deg, oklch(0.72 0.18 220), oklch(0.78 0.19 200));
-  --shadow-brand: 0 20px 60px -20px oklch(0.72 0.18 220 / 0.5);
+  --gradient-brand: linear-gradient(135deg, oklch(0.60 0.14 245), oklch(0.68 0.13 250));
+  --shadow-brand: 0 20px 60px -20px oklch(0.60 0.14 245 / 0.5);
   --shadow-card: 0 1px 0 0 oklch(1 0 0 / 0.06) inset, 0 20px 40px -20px oklch(0 0 0 / 0.5);
 }
 
