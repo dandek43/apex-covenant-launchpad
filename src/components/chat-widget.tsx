@@ -51,7 +51,7 @@ function saveMessages(messages: unknown[]) {
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [initialMessages] = useState(() => loadMessages());
+  const [storedMessages] = useState(() => loadMessages());
   const transport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
 
   const {
@@ -62,7 +62,7 @@ export function ChatWidget() {
     stop,
   } = useChat({
     id: CHAT_ID,
-    initialMessages,
+    messages: storedMessages,
     transport,
     onError: (err) => {
       console.error("Chat error:", err);
