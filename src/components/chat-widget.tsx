@@ -57,7 +57,7 @@ const SUGGESTIONS = [
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [storedMessages, setStoredMessages] = useState<unknown[]>([]);
+  const [storedMessages, setStoredMessages] = useState<UIMessage[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const transport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
 
