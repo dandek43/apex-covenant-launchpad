@@ -1,0 +1,243 @@
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport, type UIMessage } from "ai";
+import { useEffect, useRef, useState } from "react";
+import { MessageSquare, X, Send, ArrowDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Conversation,
+  ConversationContent,
+  ConversationEmptyState,
+  ConversationScrollButton,
+} from "@/components/ai-elements/conversation";
+import {
+  Message,
+  MessageContent,
+  MessageResponse,
+} from "@/components/ai-elements/message";
+import {
+  PromptInput,
+  PromptInputFooter,
+  PromptInputSubmit,
+  PromptInputTextarea,
+} from "@/components/ai-elements/prompt-input";
+import { Shimmer } from "@/components/ai-elements/shimmer";
+import { cn } from "@/lib/utils";
+
+const STORAGE_KEY = "apex-covenant-chat-messages";
+const CHAT_ID = "apex-covenant-assistant";
+
+function loadMessages(): UIMessage[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveMessages(messages: UIMessage[]) {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+  } catch {
+    // ignore storage errors
+  }
+}
+
+const SUGGESTIONS = [
+  "What does Apex Covenant do?",
+  "Tell me about MVNO services",
+  "How do I request pricing?",
+];
+
+export function ChatWidget() {
+  const [open, setOpen] = useState(false);
+  const [storedMessages, setStoredMessages] = useState<UIMessage[]>([]);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const transport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
+
+  const {
+    messages,
+    status,
+    error,
+    sendMessage,
+    stop,
+    setMessages,
+  } = useChat({
+    id: CHAT_ID,
+    messages: storedMessages,
+    transport,
+    onError: (err) => {
+      console.error("Chat error:", err);
+    },
+  });
+
+  // Load persisted messages client-side after hydration to avoid SSR mismatch.
+  useEffect(() => {
+    const saved = loadMessages();
+    if (saved.length > 0) {
+      setStoredMessages(saved);
+      setMessages(saved);
+    }
+  }, [setMessages]);
+
+  useEffect(() => {
+    saveMessages(messages);
+  }, [messages]);
+
+  // Focus textarea when panel opens and after stream completes.
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => textareaRef.current?.focus(), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (status === "ready") {
+      textareaRef.current?.focus();
+    }
+  }, [status]);
+
+  const isLoading = status === "submitted" || status === "streaming";
+
+  async function handleSuggestion(text: string) {
+    if (isLoading) return;
+    await sendMessage({ text });
+  }
+
+  function scrollToContact() {
+    setOpen(false);
+    if (typeof window !== "undefined") {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  return (
+    <div className="fixed bottom-4 right-4 z-[100] flex flex-col items-end gap-3">
+      {open && (
+        <div className="w-[90vw] max-w-[380px] sm:w-[380px] rounded-2xl border border-border bg-surface shadow-card overflow-hidden flex flex-col max-h-[80vh]">
+          {/* Header */}
+          <div className="flex items-center justify-between border-b border-border px-4 py-3 bg-surface-elevated shrink-0">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand" />
+              </span>
+              <span className="font-semibold text-sm">Apex Assistant</span>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              onClick={() => setOpen(false)}
+              aria-label="Close chat"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+
+          {/* Messages */}
+          <Conversation className="flex-1 min-h-[320px]">
+            <ConversationContent>
+              {messages.length === 0 ? (
+                <ConversationEmptyState
+                  title="How can we help?"
+                  description="Ask about Apex Covenant, our services, or how to get in touch."
+                  icon={<MessageSquare className="h-6 w-6 text-brand" />}
+                >
+                  <div className="w-full space-y-2">
+                    <p className="text-xs text-muted-foreground">Try asking:</p>
+                    <div className="flex flex-wrap gap-2 justify-center">
+                      {SUGGESTIONS.map((text) => (
+                        <button
+                          key={text}
+                          onClick={() => handleSuggestion(text)}
+                          className="rounded-full border border-border bg-background/60 px-3 py-1.5 text-xs text-muted-foreground hover:text-foreground hover:bg-surface transition text-left"
+                        >
+                          {text}
+                        </button>
+                      ))}
+                    </div>
+                    <button
+                      onClick={scrollToContact}
+                      className="inline-flex items-center gap-1.5 text-xs text-brand hover:underline mt-2"
+                    >
+                      <ArrowDown className="h-3 w-3" />
+                      Contact the executive team
+                    </button>
+                  </div>
+                </ConversationEmptyState>
+              ) : (
+                messages.map((message) => (
+                  <Message key={message.id} from={message.role}>
+                    <MessageContent>
+                      {message.parts.map((part, i) =>
+                        part.type === "text" ? (
+                          <MessageResponse key={i}>{part.text}</MessageResponse>
+                        ) : null
+                      )}
+                    </MessageContent>
+                  </Message>
+                ))
+              )}
+              {isLoading && messages.at(-1)?.role !== "assistant" && (
+                <Message from="assistant">
+                  <MessageContent>
+                    <Shimmer as="span">Thinking…</Shimmer>
+                  </MessageContent>
+                </Message>
+              )}
+              {error && (
+                <div className="mx-4 px-4 py-2 text-xs text-destructive bg-destructive/10 rounded-lg">
+                  Something went wrong. Please try again.
+                </div>
+              )}
+            </ConversationContent>
+            <ConversationScrollButton />
+          </Conversation>
+
+          {/* Input */}
+          <div className="border-t border-border p-3 bg-surface-elevated shrink-0">
+            <PromptInput
+              onSubmit={async ({ text }) => {
+                if (!text.trim() || isLoading) return;
+                await sendMessage({ text: text.trim() });
+              }}
+            >
+              <PromptInputTextarea
+                ref={textareaRef}
+                placeholder="Ask a question…"
+                className="min-h-12 bg-background/60"
+              />
+              <PromptInputFooter className="justify-end pt-2">
+                <PromptInputSubmit
+                  status={status}
+                  onStop={stop}
+                  disabled={isLoading}
+                  className="bg-brand text-brand-foreground hover:bg-brand/90"
+                />
+              </PromptInputFooter>
+            </PromptInput>
+          </div>
+        </div>
+      )}
+
+      <Button
+        onClick={() => setOpen((o) => !o)}
+        size="icon"
+        className={cn(
+          "h-12 w-12 rounded-full shadow-brand transition-transform hover:scale-105",
+          open ? "bg-muted text-foreground" : "bg-brand text-brand-foreground"
+        )}
+        aria-label={open ? "Close chat" : "Open chat"}
+      >
+        {open ? <X className="h-5 w-5" /> : <MessageSquare className="h-5 w-5" />}
+      </Button>
+    </div>
+  );
+}
