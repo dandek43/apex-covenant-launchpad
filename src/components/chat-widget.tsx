@@ -57,7 +57,7 @@ const SUGGESTIONS = [
 
 export function ChatWidget() {
   const [open, setOpen] = useState(false);
-  const [storedMessages] = useState(() => loadMessages());
+  const [storedMessages, setStoredMessages] = useState<unknown[]>([]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const transport = useRef(new DefaultChatTransport({ api: "/api/chat" })).current;
 
@@ -67,6 +67,7 @@ export function ChatWidget() {
     error,
     sendMessage,
     stop,
+    setMessages,
   } = useChat({
     id: CHAT_ID,
     messages: storedMessages,
@@ -75,6 +76,15 @@ export function ChatWidget() {
       console.error("Chat error:", err);
     },
   });
+
+  // Load persisted messages client-side after hydration to avoid SSR mismatch.
+  useEffect(() => {
+    const saved = loadMessages();
+    if (saved.length > 0) {
+      setStoredMessages(saved);
+      setMessages(saved);
+    }
+  }, [setMessages]);
 
   useEffect(() => {
     saveMessages(messages);
