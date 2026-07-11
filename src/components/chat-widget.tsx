@@ -28,7 +28,7 @@ import { cn } from "@/lib/utils";
 const STORAGE_KEY = "apex-covenant-chat-messages";
 const CHAT_ID = "apex-covenant-assistant";
 
-function loadMessages() {
+function loadMessages(): UIMessage[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -40,7 +40,7 @@ function loadMessages() {
   }
 }
 
-function saveMessages(messages: unknown[]) {
+function saveMessages(messages: UIMessage[]) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
