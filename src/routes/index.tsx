@@ -122,7 +122,7 @@ function LandingPage() {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { icon: Users, value: "800+", label: "B2B Customers" },
+              { icon: Users, value: "800+", label: "Customers Served" },
               { icon: Building2, value: "7+", label: "Distributors with 200+ sales reps" },
               { icon: Globe2, value: "40+", label: "Trade Shows Annually" },
             ].map((s) => (
