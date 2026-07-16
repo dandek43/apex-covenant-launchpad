@@ -18,7 +18,7 @@ function LandingPage() {
         <div className="mx-auto max-w-7xl px-6 h-16 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
           <a href="#top" className="flex min-w-0 items-center gap-2">
             <img
-              src={logoAsset.url}
+              src={logoUrl}
               alt="Apex Covenant Consulting"
               className="h-6 md:h-7 w-auto"
               style={{ filter: "invert(1) brightness(2)" }}
@@ -59,7 +59,7 @@ function LandingPage() {
         {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
-            src={heroBgAsset.url}
+            src={heroBgUrl}
             alt="Business professionals meeting in a modern conference room"
             className="h-full w-full object-cover"
           />
@@ -200,7 +200,7 @@ function LandingPage() {
       <footer className="border-t border-border/60 py-10">
         <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <img src={logoAsset.url} alt="Apex Covenant" className="h-5 w-auto" style={{ filter: "invert(1) brightness(2)" }} />
+            <img src={logoUrl} alt="Apex Covenant" className="h-5 w-auto" style={{ filter: "invert(1) brightness(2)" }} />
           </div>
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Apex Covenant Consulting. All rights reserved.
