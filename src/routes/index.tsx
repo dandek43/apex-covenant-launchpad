@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, CheckCircle2, Mail, Phone, User, Briefcase } from "lucide-react";
 import logoUrl from "@/assets/apex-covenant-logo.png";
 import heroBgUrl from "@/assets/hero-bg.jpg";
+import contactBgUrl from "@/assets/contact-bg.png";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
