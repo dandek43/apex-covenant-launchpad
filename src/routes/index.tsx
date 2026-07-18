@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, CheckCircle2, Mail, Phone, User, Briefcase } from "lucide-react";
 import logoUrl from "@/assets/apex-covenant-logo.png";
 import heroBgUrl from "@/assets/hero-bg.jpg";
+import contactBgUrl from "@/assets/contact-bg.png";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -224,8 +225,17 @@ function ContactSection() {
 
   return (
     <section id="contact" className="py-24 md:py-32 border-t border-border/60 relative overflow-hidden">
-      <div className="absolute inset-0 bg-hero opacity-60 pointer-events-none" />
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={contactBgUrl}
+          alt="Modern Apex Covenant Consulting office building at dusk"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-background/75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/80" />
+      </div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           <div>
             <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
