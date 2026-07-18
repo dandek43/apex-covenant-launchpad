@@ -259,7 +259,7 @@ function ContactSection() {
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-6 md:p-8 shadow-card">
+          <div className="rounded-2xl border border-border bg-surface p-5 md:p-6 shadow-card">
             {status === "success" ? (
               <div className="py-16 text-center">
                 <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
@@ -269,7 +269,7 @@ function ContactSection() {
                 <p className="mt-2 text-sm text-muted-foreground">Our executive team will be in touch shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <Field id="name" label="Name" icon={User}>
                   <input
                     id="name"
@@ -305,7 +305,7 @@ function ContactSection() {
                   <textarea
                     id="message"
                     required
-                    rows={5}
+                    rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60 resize-none"
