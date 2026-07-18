@@ -224,16 +224,16 @@ function ContactSection() {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 border-t border-border/60 relative overflow-hidden">
+    <section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
           src={contactBgUrl}
           alt="Modern Apex Covenant Consulting office building at dusk"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-background/75" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/80" />
+        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
       </div>
       <div className="relative z-10 mx-auto max-w-7xl px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -259,7 +259,7 @@ function ContactSection() {
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-border bg-surface p-6 md:p-8 shadow-card">
+          <div className="rounded-2xl border border-border bg-surface p-5 md:p-6 shadow-card">
             {status === "success" ? (
               <div className="py-16 text-center">
                 <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
@@ -269,7 +269,7 @@ function ContactSection() {
                 <p className="mt-2 text-sm text-muted-foreground">Our executive team will be in touch shortly.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <Field id="name" label="Name" icon={User}>
                   <input
                     id="name"
@@ -305,7 +305,7 @@ function ContactSection() {
                   <textarea
                     id="message"
                     required
-                    rows={5}
+                    rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}
                     className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60 resize-none"
