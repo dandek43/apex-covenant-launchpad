@@ -12,7 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { ChatWidget } from "@/components/chat-widget";
-import './custom.css';
 
 function NotFoundComponent() {
   return (
