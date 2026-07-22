@@ -4,7 +4,6 @@ import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, C
 import logoUrl from "@/assets/apex-covenant-logo.png";
 import heroBgUrl from "@/assets/hero-bg.jpg";
 import contactBgUrl from "@/assets/contact-bg.png";
-import './custom.css';
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
