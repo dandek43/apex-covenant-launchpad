@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, CheckCircle2, Mail, Phone, User, Briefcase } from "lucide-react";
+import { ArrowRight, Building2, Users, Rocket, Globe2, Signal, Menu, X, CheckCircle2 } from "lucide-react";
 import logoUrl from "@/assets/apex-covenant-logo.png";
 import heroBgUrl from "@/assets/hero-bg.jpg";
 import contactBgUrl from "@/assets/contact-bg.png";
-import { ContactForm } from '@/components/ContactForm';
+import { ContactForm } from "@/components/ContactForm";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -30,7 +30,10 @@ function LandingPage() {
             <a href="#about" className="hover:text-foreground transition">About</a>
             <a href="#capabilities" className="hover:text-foreground transition">Capabilities</a>
             <a href="#contact" className="hover:text-foreground transition">Contact</a>
-            <a href="#contact" className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-2 text-sm font-semibold text-brand-foreground shadow-brand hover:opacity-95 transition">
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-gradient px-4 py-2 text-sm font-semibold text-brand-foreground shadow-brand hover:opacity-95 transition"
+            >
               Get in touch <ArrowRight className="h-4 w-4" />
             </a>
           </nav>
@@ -48,7 +51,11 @@ function LandingPage() {
               <a href="#about" onClick={() => setMenuOpen(false)} className="text-muted-foreground hover:text-foreground">About</a>
               <a href="#capabilities" onClick={() => setMenuOpen(false)} className="text-muted-foreground hover:text-foreground">Capabilities</a>
               <a href="#contact" onClick={() => setMenuOpen(false)} className="text-muted-foreground hover:text-foreground">Contact</a>
-              <a href="#contact" onClick={() => setMenuOpen(false)} className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-4 py-2 font-semibold text-brand-foreground">
+              <a
+                href="#contact"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-4 py-2 font-semibold text-brand-foreground"
+              >
                 Get in touch <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -58,14 +65,12 @@ function LandingPage() {
 
       {/* HERO */}
       <section id="top" className="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden">
-        {/* Background image */}
         <div className="absolute inset-0 z-0">
           <img
             src={heroBgUrl}
             alt="Business professionals meeting in a modern conference room"
             className="h-full w-full object-cover"
           />
-          {/* Subtle overlay for text readability */}
           <div className="absolute inset-0 bg-background/45" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
@@ -75,10 +80,10 @@ function LandingPage() {
           <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/60 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-brand animate-pulse" />
-              High-Tech Business Development & Marketing
+              High-Tech Business Development &amp; Marketing
             </span>
             <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-semibold leading-[1.05] tracking-tight">
-              20+ Years of High-Tech <span className="text-gradient-brand">Business Development</span> & Marketing Excellence.
+              20+ Years of High-Tech <span className="text-gradient-brand">Business Development</span> &amp; Marketing Excellence.
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               From scaling consumer brands in major retail to empowering rural telecoms with MVNO mobility solutions.
@@ -113,10 +118,12 @@ function LandingPage() {
             </div>
             <div className="space-y-5 text-muted-foreground leading-relaxed">
               <p>
-                A diverse career navigating graduate academia, a Fortune 100 company, the dot-com era, and leadership of a <span className="text-foreground font-medium">$20M branch</span> of a global tech manufacturer.
+                A diverse career navigating graduate academia, a Fortune 100 company, the dot-com era, and leadership of a{" "}
+                <span className="text-foreground font-medium">$20M branch</span> of a global tech manufacturer.
               </p>
               <p>
-                A reputation for forging lasting relationships across highly diverse segments — telcos, wireless ISPs, security VARs, integrators, and distributors — turning technical capability into commercial momentum.
+                A reputation for forging lasting relationships across highly diverse segments — telcos, wireless ISPs,
+                security VARs, integrators, and distributors — turning technical capability into commercial momentum.
               </p>
             </div>
           </div>
@@ -128,7 +135,10 @@ function LandingPage() {
               { icon: Building2, value: "7+", label: "Distributors with 200+ sales reps" },
               { icon: Globe2, value: "40+", label: "Trade Shows Annually" },
             ].map((s) => (
-              <div key={s.label} className="group relative rounded-2xl border border-border bg-surface p-8 shadow-card overflow-hidden">
+              <div
+                key={s.label}
+                className="group relative rounded-2xl border border-border bg-surface p-8 shadow-card overflow-hidden"
+              >
                 <div className="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-brand/10 blur-3xl opacity-0 group-hover:opacity-100 transition" />
                 <s.icon className="h-6 w-6 text-brand" />
                 <div className="mt-6 text-5xl font-semibold tracking-tight text-foreground">{s.value}</div>
@@ -143,7 +153,9 @@ function LandingPage() {
       <section id="capabilities" className="py-24 md:py-32 border-t border-border/60 bg-surface/30">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Core Milestones & Capabilities</p>
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">
+              Core Milestones &amp; Capabilities
+            </p>
             <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">
               Proven results across brand, national strategy, and telecom enablement.
             </h2>
@@ -173,7 +185,10 @@ function LandingPage() {
                 tags: ["MVNE", "MVNO", "Rural Telecom"],
               },
             ].map((c) => (
-              <article key={c.title} className="relative rounded-2xl border border-border bg-surface p-8 shadow-card flex flex-col">
+              <article
+                key={c.title}
+                className="relative rounded-2xl border border-border bg-surface p-8 shadow-card flex flex-col"
+              >
                 <div className="flex items-center justify-between">
                   <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand/10 text-brand">
                     <c.icon className="h-5 w-5" />
@@ -184,7 +199,10 @@ function LandingPage() {
                 <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{c.body}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {c.tags.map((t) => (
-                    <span key={t} className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-xs text-muted-foreground">
+                    <span
+                      key={t}
+                      className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-xs text-muted-foreground"
+                    >
                       {t}
                     </span>
                   ))}
@@ -197,36 +215,61 @@ function LandingPage() {
 
       {/* CONTACT */}
       <section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src={contactBgUrl}
-          alt="Modern Apex Covenant Consulting office building at dusk"
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-background/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
-      </div>
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
-            <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">Let's build your next revenue channel.</h2>
-            <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">Whether you're scaling a consumer brand into national retail or launching MVNO service to your subscriber base — we'd like to hear from you.</p>
-            <ul className="mt-8 space-y-3 text-sm">
-              {["Submissions route directly to the executive team", "Immediate response — typically within one business day", "Confidential — used only to reply to your inquiry"].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-muted-foreground">
-                  <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
+        <div className="absolute inset-0 z-0">
+          <img
+            src={contactBgUrl}
+            alt="Modern Apex Covenant Consulting office building at dusk"
+            className="h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-background/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
+              <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">
+                Let's build your next revenue channel.
+              </h2>
+              <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">
+                Whether you're scaling a consumer brand into national retail or launching MVNO service to your
+                subscriber base — we'd like to hear from you.
+              </p>
+              <ul className="mt-8 space-y-3 text-sm">
+                {[
+                  "Submissions route directly to the executive team",
+                  "Immediate response — typically within one business day",
+                  "Confidential — used only to reply to your inquiry",
+                ].map((t) => (
+                  <li key={t} className="flex items-start gap-3 text-muted-foreground">
+                    <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <ContactForm />
           </div>
-          <ContactForm />
-         </div>
-      </div>
-    </section>
-      );
-    }
+        </div>
+      </section>
 
-      
+      {/* FOOTER */}
+      <footer className="border-t border-border/60 py-10">
+        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <img
+              src={logoUrl}
+              alt="Apex Covenant"
+              className="h-5 w-auto"
+              style={{ filter: "invert(1) brightness(2)" }}
+            />
+          </div>
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Apex Covenant Consulting. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
