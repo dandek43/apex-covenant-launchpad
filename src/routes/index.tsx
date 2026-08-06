@@ -4,6 +4,7 @@ import { ArrowRight, Building2, Users, Radio, Rocket, Globe2, Signal, Menu, X, C
 import logoUrl from "@/assets/apex-covenant-logo.png";
 import heroBgUrl from "@/assets/hero-bg.jpg";
 import contactBgUrl from "@/assets/contact-bg.png";
+import { ContactForm } from '@/components/ContactForm';
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -195,169 +196,35 @@ function LandingPage() {
       </section>
 
       {/* CONTACT */}
-      <ContactSection />
-
-      {/* FOOTER */}
-      <footer className="border-t border-border/60 py-10">
-        <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <img src={logoUrl} alt="Apex Covenant" className="h-5 w-auto" style={{ filter: "invert(1) brightness(2)" }} />
-          </div>
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Apex Covenant Consulting. All rights reserved.
-          </p>
-        </div>
-      </footer>
+<section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
+  <div className="absolute inset-0 z-0">
+    <img
+      src={contactBgUrl}
+      alt="Modern Apex Covenant Consulting office building at dusk"
+      className="h-full w-full object-cover object-center"
+    />
+    <div className="absolute inset-0 bg-background/40" />
+    <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
+  </div>
+  <div className="relative z-10 mx-auto max-w-7xl px-6">
+    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+      <div>
+        <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
+        <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">Let's build your next revenue channel.</h2>
+        <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">Whether you're scaling a consumer brand into national retail or launching MVNO service to your subscriber base — we'd like to hear from you.</p>
+        <ul className="mt-8 space-y-3 text-sm">
+          {["Submissions route directly to the executive team", "Immediate response — typically within one business day", "Confidential — used only to reply to your inquiry"].map((t) => (
+            <li key={t} className="flex items-start gap-3 text-muted-foreground">
+              <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <ContactForm />
     </div>
-  );
-}
+  </div>
+</section>
 
-function ContactSection() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus("submitting");
-    // Placeholder submission — wire up backend / email routing later.
-    setTimeout(() => setStatus("success"), 700);
-  }
-
-  return (
-    <section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src={contactBgUrl}
-          alt="Modern Apex Covenant Consulting office building at dusk"
-          className="h-full w-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-background/40" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
-      </div>
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
-            <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">
-              Let's build your next revenue channel.
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">
-              Whether you're scaling a consumer brand into national retail or launching MVNO service to your subscriber base — we'd like to hear from you.
-            </p>
-            <ul className="mt-8 space-y-3 text-sm">
-              {[
-                "Submissions route directly to the executive team",
-                "Immediate response — typically within one business day",
-                "Confidential — used only to reply to your inquiry",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-3 text-muted-foreground">
-                  <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-border bg-surface p-5 md:p-6 shadow-card">
-            {status === "success" ? (
-              <div className="py-16 text-center">
-                <div className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand/10 text-brand">
-                  <CheckCircle2 className="h-7 w-7" />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold">Message received.</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Our executive team will be in touch shortly.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <Field id="name" label="Name" icon={User}>
-                  <input
-                    id="name"
-                    required
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60"
-                    placeholder="Jane Doe"
-                  />
-                </Field>
-                <Field id="email" label="Company Email" icon={Mail}>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60"
-                    placeholder="jane@company.com"
-                  />
-                </Field>
-                <Field id="phone" label="Phone Number" icon={Phone}>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60"
-                    placeholder="+1 (555) 000-0000"
-                  />
-                </Field>
-                <Field id="message" label="Message" icon={Briefcase} align="top">
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full bg-transparent outline-none text-foreground placeholder:text-muted-foreground/60 resize-none"
-                    placeholder="Tell us about your goals, market, or opportunity…"
-                  />
-                </Field>
-
-                {/* Cloudflare Turnstile placeholder */}
-                <div
-                  className="rounded-lg border border-dashed border-border bg-background/40 px-4 py-4 text-xs text-muted-foreground flex items-center justify-between"
-                  data-cf-turnstile-placeholder
-                >
-                  <span>Cloudflare Turnstile</span>
-                  <span className="font-mono text-[10px] text-muted-foreground/70">bot-protection widget mounts here</span>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-6 py-3.5 font-semibold text-brand-foreground shadow-brand hover:opacity-95 transition disabled:opacity-60"
-                >
-                  {status === "submitting" ? "Sending…" : "Send Message"}
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-                <p className="text-[11px] text-muted-foreground text-center">
-                  Submissions route directly to the executive team for immediate response.
-                </p>
-              </form>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Field({
-  id, label, icon: Icon, align = "center", children,
-}: {
-  id: string;
-  label: string;
-  icon: React.ComponentType<{ className?: string }>;
-  align?: "center" | "top";
-  children: React.ReactNode;
-}) {
-  return (
-    <label htmlFor={id} className="block">
-      <span className="block text-xs font-medium text-muted-foreground mb-2">{label}</span>
-      <div className={`flex ${align === "top" ? "items-start" : "items-center"} gap-3 rounded-lg border border-border bg-background/60 px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20 transition`}>
-        <Icon className={`h-4 w-4 text-muted-foreground shrink-0 ${align === "top" ? "mt-1" : ""}`} />
-        {children}
-      </div>
-    </label>
-  );
-}
+      
