@@ -226,5 +226,8 @@ function LandingPage() {
     </div>
   </div>
 </section>
+      </div>
+  );
+}
 
       
