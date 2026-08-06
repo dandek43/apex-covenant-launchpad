@@ -196,37 +196,37 @@ function LandingPage() {
       </section>
 
       {/* CONTACT */}
-<section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
-  <div className="absolute inset-0 z-0">
-    <img
-      src={contactBgUrl}
-      alt="Modern Apex Covenant Consulting office building at dusk"
-      className="h-full w-full object-cover object-center"
-    />
-    <div className="absolute inset-0 bg-background/40" />
-    <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
-    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
-  </div>
-  <div className="relative z-10 mx-auto max-w-7xl px-6">
-    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-      <div>
-        <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
-        <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">Let's build your next revenue channel.</h2>
-        <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">Whether you're scaling a consumer brand into national retail or launching MVNO service to your subscriber base — we'd like to hear from you.</p>
-        <ul className="mt-8 space-y-3 text-sm">
-          {["Submissions route directly to the executive team", "Immediate response — typically within one business day", "Confidential — used only to reply to your inquiry"].map((t) => (
-            <li key={t} className="flex items-start gap-3 text-muted-foreground">
-              <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
-              <span>{t}</span>
-            </li>
-          ))}
-        </ul>
+      <section id="contact" className="py-12 md:py-16 border-t border-border/60 relative overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={contactBgUrl}
+          alt="Modern Apex Covenant Consulting office building at dusk"
+          className="h-full w-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-background/60" />
       </div>
-      <ContactForm />
-    </div>
-  </div>
-</section>
-  );
-}
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+          <div>
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">Contact Us</p>
+            <h2 className="mt-4 text-3xl md:text-5xl font-semibold leading-tight">Let's build your next revenue channel.</h2>
+            <p className="mt-5 text-lg text-muted-foreground leading-relaxed max-w-lg">Whether you're scaling a consumer brand into national retail or launching MVNO service to your subscriber base — we'd like to hear from you.</p>
+            <ul className="mt-8 space-y-3 text-sm">
+              {["Submissions route directly to the executive team", "Immediate response — typically within one business day", "Confidential — used only to reply to your inquiry"].map((t) => (
+                <li key={t} className="flex items-start gap-3 text-muted-foreground">
+                  <CheckCircle2 className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <ContactForm />
+         </div>
+      </div>
+    </section>
+      );
+    }
 
       
