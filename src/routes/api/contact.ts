@@ -48,7 +48,7 @@ export const Route = createFileRoute("/api/contact")({
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              from: "Apex Covenant <onboarding@resend.dev>",
+              from: "Apex Covenant <noreply@send.apexcovenant.com>",
               to: ["dan@apexcovenant.com"],
               reply_to: email,
               subject: `New contact form submission from ${name}`,
